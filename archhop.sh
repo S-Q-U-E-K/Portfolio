@@ -7,7 +7,8 @@ pacman -S --needed cryptsetup btrfs-progs vim gparted
 
 ##Variables:
 echo "Setting Variables"
-DISK=/dev/disk/by-id/nvme-HFM001TD3JX013N_CYA3N053410403J2F
+read -p "Enter Disk id" DISKID
+DISK=/dev/disk/by-id/$DISKID
 boot_partuuid=$(blkid -s PARTUUID -o value $DISK-part8)
 boot_mapper_name=cryptroot-luks1-partuuid-$boot_partuuid
 boot_mapper_path=/dev/mapper/$boot_mapper_name
